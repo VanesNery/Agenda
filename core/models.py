@@ -12,5 +12,9 @@ class Event(models.Model):
 
     class Meta:
         db_table = 'event'
+
     def __str__(self):
         return self.title
+        
+    def get_date_creation(self):
+        return self.date_create.strftime('%d/%m/%Y - %H:%M')
