@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from core.models import Event
+from datetime import datetime, timedelta
+from django.http.response import Http404, JsonResponse
 
 # Create your views here.
 
@@ -35,19 +37,22 @@ def submit_login(request):
 
 @login_required(login_url='/login/')
 def list_event(request):
-    usuario = request.user
-    evento = Event.objects.filter(user=usuario)
-    dados = {'eventos': evento}
-    return render(request, 'agenda.html', dados)
+    user = request.user
+    current_date = datetime.now() - timedelta(hours=1)
+    event = Event.objects.filter(user=user,
+                                 date_event__gt=current_date)
+    # __gt é maior e __lt para menor
+    data = {'events': event}
+    return render(request, 'agenda.html', data)
 
 
 @login_required(login_url='/login/')
 def events(request):
     id_event = request.GET.get('id')
-    dados = {}
+    data = {}
     if id_event:
-        dados['event'] = Event.objects.get(id=id_event)
-    return render(request, 'evento.html')
+        data['event'] = Event.objects.get(id=id_event)
+    return render(request, 'evento.html', data)
 
 
 @login_required(login_url='/login/')
@@ -61,10 +66,10 @@ def submit_event(request):
         if id_event:
             event = Event.objects.get(id=id_event)
             if event.user == user:
-                Event.objects.filter(id=id_event.update(title=title,
-                                                        date_event=date_event,
-                                                        description=description,
-                                                        user=user))
+                event.title = title
+                event.description = description
+                event.date_event = date_event
+                event.save()
         else:
             Event.objects.create(title=title,
                                  date_event=date_event,
@@ -76,7 +81,19 @@ def submit_event(request):
 @login_required(login_url='/login/')
 def delete_event(request, id_event):
     user = request.user
-    event = Event.objects.get(id=id_event)
+    try:
+        event = Event.objects.get(id=id_event)
+    except Exception:
+        raise Http404()
     if user == event.user:
         event.delete()
+    else:
+        raise Http404()
     return redirect('/')
+
+
+@login_required(login_url='/login/')
+def json_list_event(request):
+    user = request.user
+    event = Event.objects.filter(user=user).values('id', 'title')
+    return JsonResponse(list(event), safe=False)

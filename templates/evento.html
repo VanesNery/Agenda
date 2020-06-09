@@ -5,18 +5,18 @@
 <h2>Evento</h2>
 
 <form action="submit" method="POST">{% csrf_token %}
+    <input type="number" name="id_event" value="{{ event.id }}" hidden >
     <label>Título: </label>
-    <input type="number" name="id_event" value="{{ evento.id}}" hidden>
     <br>
-    <input type="text" name="title" size="23" value="{{ evento.title }}">
+    <input type="text" name="title" size="23" value="{{ event.title }}" >
     <br>
     <label>Data do Evento: </label>
     <br>
-    <input type="datetime-local" name="date_event" value="{{ evento.get_date_input_event }}">
+    <input type="datetime-local" name="date_event" value="{{event.get_date_input_event}}">
     <br>
     <label>Descrição: </label>
     <br>
-    <textarea name="description" rows="5" cols="40">{{ evento.description }}</textarea>
+    <textarea name="description" rows="5" cols="40">{{ event.description }}</textarea>
     <br>
     <br>
     <button type="submit">Salvar</button>

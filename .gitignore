@@ -1,3 +1,4 @@
 *.pyc
 .vscode
 **/__pycache__
+agenda/__pycache__
