@@ -43,6 +43,10 @@ def list_event(request):
 
 @login_required(login_url='/login/')
 def events(request):
+    id_event = request.GET.get('id')
+    dados = {}
+    if id_event:
+        dados['event'] = Event.objects.get(id=id_event)
     return render(request, 'evento.html')
 
 
@@ -53,8 +57,26 @@ def submit_event(request):
         date_event = request.POST.get('date_event')
         description = request.POST.get('description')
         user = request.user
-        Event.objects.create(title=title,
-                             date_event=date_event,
-                             description=description,
-                             user=user)
+        id_event = request.POST.get('id_event')
+        if id_event:
+            event = Event.objects.get(id=id_event)
+            if event.user == user:
+                Event.objects.filter(id=id_event.update(title=title,
+                                                        date_event=date_event,
+                                                        description=description,
+                                                        user=user))
+        else:
+            Event.objects.create(title=title,
+                                 date_event=date_event,
+                                 description=description,
+                                 user=user)
+    return redirect('/')
+
+
+@login_required(login_url='/login/')
+def delete_event(request, id_event):
+    user = request.user
+    event = Event.objects.get(id=id_event)
+    if user == event.user:
+        event.delete()
     return redirect('/')

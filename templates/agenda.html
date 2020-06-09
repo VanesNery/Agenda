@@ -7,7 +7,10 @@
     </a>
     <ul style="font-size: 18px;">
     {% for evento in eventos %}
-        <li>{{ evento.title }} - {{ evento.get_date_creation }}hrs</li>
+        <li>
+            {{ evento.title }} - {{ evento.get_date_event }} 
+            (<a href="evento/?id={{ evento.id }}">Editar</a> / <a href="evento/delete/{{ evento.id }}">Excluir</a>)
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}
