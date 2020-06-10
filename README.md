@@ -1,13 +1,13 @@
 # Projeto Agenda
 
 ## Indice
-1. [O que é ?](O-que-é)
-2. [Resumo do Projeto](Resumo-do-Projeto)
-3. [Como utilizar?](Como-utilizar) 
-4. [Tecnologias Utilizadas](Tecnologias-Utilizadas)
-5. [Objetivos de aprendizagem e Considerações Gerais](Considerações-Gerais)
-6. [Imagem da Interface](Imagem-da-Interface)
-7. [Link](Link)
+1. [O que é ?](#o-que-é)
+2. [Resumo do Projeto](#resumo-do-projeto)
+3. [Como utilizar?](3como-utilizar) 
+4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+5. [Objetivos de aprendizagem e Considerações Gerais](#objetivos-de-aprendizagem-e-considerações-gerais)
+6. [Imagem da Interface](#imagem-da-interface)
+7. [Link](#link)
 
 * * * 
 ## O que é?
@@ -43,8 +43,8 @@ O objetivo principal envolveu o aprendizado na manipulação de dados com Python
 
 ## Imagem da Interface
 
-[![Tela do sistema](screen-calendar.avi)](screen-calendar.avi)
+![Tela do sistema](/img/screen-calendar.avi)
 
 ## Link
 
-** Feito por Vanessa Nery **
+**Feito por Vanessa Nery**
