@@ -1,0 +1,22 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+<h4 style="text-align:center">HISTORICO</h4>
+
+{% for event in events %}
+<section>
+    <span>{{ event.title }}</span>
+    <span>{{ event.date_event }}</span>
+    <span>{{ event.description }}</span>
+    <div>
+        <a href="evento/?id={{ event.id }}">Editar</a>
+        <a href="evento/delete/{{ event.id }}">Excluir</a>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<br>
+{% endfor %}
+
+{% endblock %}

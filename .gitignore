@@ -1,4 +1,5 @@
 *.pyc
 .vscode
 **/__pycache__
-agenda/__pycache__
+*/agenda/__pycache__
+secret_key.txt

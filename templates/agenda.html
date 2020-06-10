@@ -1,9 +1,12 @@
 {% extends "model-page.html" %}
 
 {% block content %}
-<h2>Agendamentos</h2>
+<h2 style="text-align: center;">Agendamentos</h2>
 <a href="evento/">
     <button type="button">Novo Evento</button>
+</a>
+<a href="historico/">
+    <button type="button">Histórico</button>
 </a>
 <ul style="font-size: 18px;">
     {% for event in events %}
@@ -16,4 +19,8 @@
     </li>
     {% endfor %}
 </ul>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}

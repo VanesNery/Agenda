@@ -66,10 +66,10 @@ def submit_event(request):
         if id_event:
             event = Event.objects.get(id=id_event)
             if event.user == user:
-                event.title = title
-                event.description = description
-                event.date_event = date_event
-                event.save()
+                Event.objects.filter(id=id_event).update(title=title,
+                                                         date_event=date_event,
+                                                         description=description,
+                                                         user=user)
         else:
             Event.objects.create(title=title,
                                  date_event=date_event,
@@ -97,3 +97,13 @@ def json_list_event(request):
     user = request.user
     event = Event.objects.filter(user=user).values('id', 'title')
     return JsonResponse(list(event), safe=False)
+
+
+@login_required(login_url='/login/')
+def historic(request):
+    user = request.user
+    current_date = datetime.now()
+    event = Event.objects.filter(user=user,
+                                 date_event__lt=current_date)
+    data = {'events': event}
+    return render(request, 'historico.html', data)

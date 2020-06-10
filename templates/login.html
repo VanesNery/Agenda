@@ -6,13 +6,18 @@
     <title>Agenda</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1 style="text-align: center;">Login</h1>
+    <br>
     <form action="submit" method="POST">{% csrf_token %}
         <div align="center">
             <label>Usuário:</label>
             <input type="text" name="username"/>
+            <br>
+            <br>
             <label>Password:</label>
             <input type="password" name="password"/>
+            <br>
+            <br>
             <button type="submit">Enter</button>
         </div>
     </form>

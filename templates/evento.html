@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>Evento</h2>
+<h2 style="text-align: center;">Evento</h2>
 
 <form action="submit" method="POST">{% csrf_token %}
     <input type="number" name="id_event" value="{{ event.id }}" hidden >
@@ -24,6 +24,10 @@
         <button type="button">Cancelar</button>
     </a>
 </form>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 {% endblock %}
