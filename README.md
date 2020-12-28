@@ -43,7 +43,7 @@ O objetivo principal envolveu o aprendizado na manipulação de dados com Python
 
 ## Imagem da Interface
 
-![Tela do sistema](/img/screen-calendar.avi)
+![Tela do sistema](/img/screen-calendar.gif)
 
 ## Link
 
